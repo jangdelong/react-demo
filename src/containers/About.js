@@ -1,6 +1,10 @@
+
 import React, { useState } from 'react';
 import AboutHeader from '@/components/AboutHeader';
 import URL from 'url';
+import { setTestNameAsync } from '@/actions/';
+import { connect } from 'react-redux';
+import t from 'prop-types';
 
 const inputStyle = {
   width: '100px',
@@ -8,7 +12,7 @@ const inputStyle = {
   border: '1px solid #ccc'
 };
 
-const About = (props) => {
+const About = props => {
   const [ name, setName ] = useState('Jelon');
   const setter = set => e => {
     const { target } = e;
@@ -17,6 +21,12 @@ const About = (props) => {
   };
   const query = URL.parse(props.location.search, true).query;
   const id = query.id;
+  const doSetTestName = name => {
+    return () => {
+      props.dispatch(setTestNameAsync(name));
+    }
+  };
+
 
   return (
     <div>
@@ -31,8 +41,24 @@ const About = (props) => {
           onChange={ setter(setName) }
         />
       </div>
+
+      <div style={ { marginTop: '50px' } }>
+        <div>{  props.testName }</div>
+        <button onClick={ doSetTestName('我是测试数据') }>我是按钮</button>
+      </div>
     </div>
   )
 };
+About.propTypes = {
+  testName: t.string.isRequired,
+  dispatch: t.func.isRequired
+};
 
-export default About;
+const mapStateToProps = state => {
+  const { testName } = state.about;
+  return {
+    testName
+  }
+};
+
+export default connect(mapStateToProps)(About);
