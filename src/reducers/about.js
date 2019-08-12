@@ -13,7 +13,7 @@ function setTestName (state = { testName: '' }, action) {
   switch (action.type) {
     case 'SET_TEST_NAME':
       return Object.assign({}, state, {
-        testName: action.testName
+        testName: action.payload.testName
       });
     default:
       return state;
