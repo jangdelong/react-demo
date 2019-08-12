@@ -1,5 +1,6 @@
 /**
  * About页状态管理
+ * reducer：一般都是一个函数
  */
 const initialState = {
   testName: ''

@@ -27,7 +27,6 @@ const About = props => {
     }
   };
 
-
   return (
     <div>
       <AboutHeader text="这是标题哈哈哈" />
