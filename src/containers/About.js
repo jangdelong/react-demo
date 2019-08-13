@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AboutHeader from '@/components/AboutHeader';
 import URL from 'url';
 import { setTestNameAsync } from '@/actions/';
@@ -24,10 +24,14 @@ const About = props => {
   const doSetTestName = name => {
     return () => {
       props.dispatch(setTestNameAsync(name)).then(res => {
-        console.log('promise then');
+        alert('异步回调 => ' + res);
       });
     }
   };
+
+  useEffect(() => {
+    document.title = '这是about页面'
+  });
 
   return (
     <div>

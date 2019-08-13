@@ -17,7 +17,7 @@ export const setTestNameAsync = (testName) => dispatch => {
   return new Promise(resolve => {
     setTimeout(() => {
       dispatch(setTestName(testName));
-      resolve();
+      resolve(testName);
     }, 100);
   });
 }
