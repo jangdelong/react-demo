@@ -13,8 +13,11 @@ export const setTestName = testName => ({
 /**
  * 不纯粹的 action
  */
-export const setTestNameAsync = testName => dispatch => {
-  setTimeout(() => {
-    dispatch(setTestName(testName))
-  }, 100)
+export const setTestNameAsync = (testName) => dispatch => {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      dispatch(setTestName(testName));
+      resolve();
+    }, 100);
+  });
 }

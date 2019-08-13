@@ -23,7 +23,9 @@ const About = props => {
   const id = query.id;
   const doSetTestName = name => {
     return () => {
-      props.dispatch(setTestNameAsync(name));
+      props.dispatch(setTestNameAsync(name)).then(res => {
+        console.log('promise then');
+      });
     }
   };
 
