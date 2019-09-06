@@ -68,6 +68,7 @@
     "workbox-webpack-plugin": "4.2.0"
   },
   "scripts": {
+    "start": "node scripts/start.js",
     "dev": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
@@ -140,5 +141,6 @@
   "devDependencies": {
     "http-proxy-middleware": "^0.20.0",
     "node-sass": "^4.12.0"
-  }
+  },
+  "homepage": "."
 }
