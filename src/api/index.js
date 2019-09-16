@@ -3,13 +3,13 @@ import { getUrlParam } from '@/utils'
 const debug = process.env.NODE_ENV !== 'production'
 const root = debug ? '/test-api' : ''
 
-const post = async (url, options) => {
+export const post = async (url, params, config = {}) => {
   const ticket = getUrlParam('ticket')
   const appid = getUrlParam('appid') || getUrlParam('appId') || getUrlParam('client_id')
   const urlParamStr = (ticket ? '?ticket=' + ticket : '') + (appid ? '&appid=' + appid : '')
 
-  const promise = new Promise((resolve, reject) => {
-    axios.post(root + url + urlParamStr, options).then(res => {
+  return new Promise((resolve, reject) => {
+    axios.post(root + url + urlParamStr, params, config).then(res => {
       const data = res.data
       if (data.success) {
         resolve(data)
@@ -20,8 +20,25 @@ const post = async (url, options) => {
       reject(err)
     })
   })
+}
 
-  return promise
+export const get = async (url, params, config = {}) => {
+  const ticket = getUrlParam('ticket')
+  const appid = getUrlParam('appid') || getUrlParam('appId') || getUrlParam('client_id')
+  const urlParamStr = (ticket ? '?ticket=' + ticket : '') + (appid ? '&appid=' + appid : '')
+
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      url: root + url + urlParamStr,
+      params,
+      headers: config
+    }).then(res => {
+      resolve(res.data)
+    }).catch(_ => {
+      reject(_)
+    })
+  })
 }
 
 // 搜索联系人
