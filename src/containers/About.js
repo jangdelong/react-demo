@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import AboutHeader from '@/components/AboutHeader';
-import URL from 'url';
+// import URL from 'url';
 import { setTestNameAsync } from '@/actions/';
 import { connect } from 'react-redux';
 import t from 'prop-types';
@@ -19,8 +19,10 @@ const About = props => {
     const { value } = target;
     set(value);
   };
-  const query = URL.parse(props.location.search, true).query;
-  const id = query.id;
+  // const query = URL.parse(props.location.search, true).query;
+
+  // const id = query.id;
+  const { id } = props.match.params
   const doSetTestName = name => {
     return () => {
       props.dispatch(setTestNameAsync(name)).then(res => {
@@ -30,13 +32,13 @@ const About = props => {
   };
 
   useEffect(() => {
-    document.title = '这是about页面'
+    document.title = '这是about页面';
   });
 
   return (
     <div>
       <AboutHeader text="这是标题哈哈哈" />
-      <h1>这是About页面 {id}</h1>
+      <h1>这是About页面{ id }</h1>
       <h2>{ name }</h2>
       <div>
         <input
@@ -48,7 +50,7 @@ const About = props => {
       </div>
 
       <div style={ { marginTop: '50px' } }>
-        <div>{  props.testName }</div>
+        <div>{ props.testName }</div>
         <button onClick={ doSetTestName('我是测试数据') }>我是按钮</button>
       </div>
     </div>

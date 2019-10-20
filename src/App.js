@@ -1,17 +1,17 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Home from './containers/Home';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import CommonHeader from './components/CommonHeader';
+import Home from './containers/Home';
 import About from './containers/About';
 
 function App() {
   return (
     <Router>
       <CommonHeader />
-      <div>
+      <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/about" component={About} />
-      </div>
+        <Route path="/about/:id" component={About} />
+      </Switch>
     </Router>
   );
 }

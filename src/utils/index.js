@@ -1,3 +1,8 @@
+/**
+ * 获取URL参数
+ * @param {*} name 字段名
+ * @param {*} url 链接地址
+ */
 export const getUrlParam = (name, url) => {
   if (!url) {
     url = window.location.href

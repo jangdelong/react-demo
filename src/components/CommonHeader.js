@@ -9,7 +9,7 @@ const CommonHeader = () => {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/about?id=123456">About</Link>
+          <Link to="/about/zhang">About</Link>
         </li>
       </ul>
     </nav>
