@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import '@/assets/scss/common.scss';
 import styles from './AboutHeader.module.scss';
 
-const AboutHeader = (props) => (
+const AboutHeader = props => (
   <h3 className={classnames(['title', styles.title])}>
     { props.text || '这是公共头部' }
     <span className={styles.inner}>6666</span>

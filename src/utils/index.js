@@ -88,3 +88,22 @@ export const debounce = (fn, context = null, interval = 300) => {
     }, interval)
   }
 }
+/**
+ * 深拷贝
+ * @param {*} target 
+ */
+export const deepClone = target => {
+  if (typeof target === 'object') {
+    let newTarget = Array.isArray(target) ? [] : {}
+    for (const i in target) {
+      if (typeof target[i] === 'object') {
+        newTarget[i] = this.deepClone(target[i])
+      } else {
+        newTarget[i] = target[i]
+      }
+    }
+    return newTarget
+  } else {
+    return target
+  }
+}
